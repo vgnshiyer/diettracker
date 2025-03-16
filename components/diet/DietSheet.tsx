@@ -1,27 +1,38 @@
 'use client';
 
+import { useMealContext } from '@/context/MealContext';
 import { FoodItem, Meal } from '@/lib/diet/models';
-import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import React, { useState } from 'react';
 
 const DietSheet: React.FC = () => {
-  const [meals, setMeals] = useState<Meal[]>([]);
+  const { meals, setMeals, setSelectedMealIndex } = useMealContext();
+  const router = useRouter();
+  const [showNamePrompt, setShowNamePrompt] = useState(false);
+  const [newMealName, setNewMealName] = useState('');
 
-  useEffect(() => {
-    const savedMeals = localStorage.getItem('meals');
-    if (savedMeals) {
-      setMeals(JSON.parse(savedMeals));
-    }
-  }, []);
-
-  const addMeal = () => {
-    const newMeal: Meal = { name: `Meal ${meals.length + 1}`, foodItems: [] };
-    setMeals([...meals, newMeal]);
+  const handleAddMeal = () => {
+    setNewMealName('');
+    setShowNamePrompt(true);
   };
 
-  const addFoodItem = (mealIndex: number, foodItem: FoodItem) => {
-    const updatedMeals = [...meals];
-    updatedMeals[mealIndex].foodItems.push(foodItem);
-    setMeals(updatedMeals);
+  const handleSaveMeal = () => {
+    if (newMealName.trim()) {
+      const newMeal: Meal = { 
+        name: newMealName.trim(), 
+        foodItems: [] 
+      };
+      setMeals([...meals, newMeal]);
+      setShowNamePrompt(false);
+    }
+  };
+
+  const handleRemoveMeal = (index: number, mealName: string) => {
+    if (confirm(`Are you sure you want to remove ${mealName}?`)) {
+      const updatedMeals = [...meals];
+      updatedMeals.splice(index, 1);
+      setMeals(updatedMeals);
+    }
   };
 
   const removeFoodItem = (mealIndex: number, foodItemIndex: number, foodItemName: string) => {
@@ -29,11 +40,6 @@ const DietSheet: React.FC = () => {
     const updatedMeals = [...meals];
     updatedMeals[mealIndex].foodItems.splice(foodItemIndex, 1);
     setMeals(updatedMeals);
-  };
-
-  const saveToLocalStorage = () => {
-    localStorage.setItem('meals', JSON.stringify(meals));
-    alert('Diet sheet saved!');
   };
 
   const calculateTotals = () => {
@@ -75,6 +81,11 @@ const DietSheet: React.FC = () => {
     }
   };
 
+  const openSearchPage = (mealIndex: number) => {
+    setSelectedMealIndex(mealIndex);
+    router.push('/search');
+  };
+
   return (
     <div className="p-4">
       <h1 className="text-2xl font-bold mb-4">Diet Sheet</h1>
@@ -86,7 +97,15 @@ const DietSheet: React.FC = () => {
       />
       {meals.map((meal: Meal, index: number) => (
         <div key={index} className="mb-6">
-          <h2 className="text-xl font-semibold mb-2">{meal.name}</h2>
+          <div className="flex justify-between items-center mb-2">
+            <h2 className="text-xl font-semibold">{meal.name}</h2>
+            <button
+              onClick={() => handleRemoveMeal(index, meal.name)}
+              className="py-1 px-2 bg-red-500 text-white rounded hover:bg-red-600 text-sm"
+            >
+              Remove Meal
+            </button>
+          </div>
           <table className="min-w-full bg-white border border-gray-200">
             <thead>
               <tr>
@@ -121,19 +140,51 @@ const DietSheet: React.FC = () => {
             </tbody>
           </table>
           <button
-            onClick={() => addFoodItem(index, { name: 'New Food', quantity: 1, nutrition: { calories: 0, carbs: 0, fats: 0, protein: 0 } })}
+            onClick={() => openSearchPage(index)}
             className="mt-2 py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-600"
           >
             Add Food Item
           </button>
         </div>
       ))}
+      
       <button
-        onClick={addMeal}
+        onClick={handleAddMeal}
         className="py-2 px-4 bg-green-500 text-white rounded hover:bg-green-600"
       >
         Add Meal
       </button>
+      {showNamePrompt && (
+        <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center">
+          <div className="bg-white p-4 rounded shadow-lg w-96">
+            <h2 className="text-xl font-bold mb-4 text-gray-800">Add New Meal</h2>
+            <input
+              type="text"
+              value={newMealName}
+              onChange={(e) => setNewMealName(e.target.value)}
+              placeholder="Enter meal name"
+              className="border p-2 w-full mb-4 rounded text-gray-800"
+              autoFocus
+            />
+            <div className="flex justify-end gap-2">
+              <button
+                onClick={() => setShowNamePrompt(false)}
+                className="py-2 px-4 bg-gray-500 text-white rounded hover:bg-gray-600"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleSaveMeal}
+                className="py-2 px-4 bg-green-500 text-white rounded hover:bg-green-600"
+                disabled={!newMealName.trim()}
+              >
+                Add
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       <div className="mt-8 p-4 rounded-lg border border-gray-200 flex flex-row justify-between">
         <h2 className="text-xl font-semibold">Summary</h2>
         <div className="flex flex-row justify-between gap-4">
@@ -143,15 +194,10 @@ const DietSheet: React.FC = () => {
           <p>Total Protein: {calculateTotals().protein}g</p>
         </div>
       </div>
-      <button
-        onClick={saveToLocalStorage}
-        className="mt-4 py-2 px-4 bg-yellow-500 text-white rounded hover:bg-yellow-600"
-      >
-        Save Diet Sheet
-      </button>
+      
       <button
         onClick={exportDiet}
-        className="ml-4 mt-4 py-2 px-4 bg-purple-500 text-white rounded hover:bg-purple-600"
+        className="mt-4 py-2 px-4 bg-purple-500 text-white rounded hover:bg-purple-600"
       >
         Export Diet
       </button>
