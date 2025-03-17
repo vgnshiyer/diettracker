@@ -13,7 +13,7 @@ const PrimaryButton = ({ children, onClick, className, faIcon }: ButtonProps) =>
   return (
     <button
       onClick={onClick}
-      className={`border-white border-[1px] bg-primary text-contrast font-semibold px-4 py-2 mt-4 rounded-md ${className} hover:bg-secondary`}
+      className={`border-white border-[1px] bg-primary text-contrast font-semibold px-4 py-2 mt-4 rounded-md ${className} hover:bg-secondary text-base md:text-lg`}
     >
       {children}
       {faIcon && <FontAwesomeIcon icon={faIcon} className="ml-2" />}

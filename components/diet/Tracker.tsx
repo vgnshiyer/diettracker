@@ -91,7 +91,7 @@ const Tracker: React.FC = () => {
             Import Diet
           </PrimaryButton>
         </div>
-        <PrimaryButton className="ml-4" onClick={handleAddMeal} faIcon={faPlus}>
+        <PrimaryButton className="ml-2 md:ml-4" onClick={handleAddMeal} faIcon={faPlus}>
           Add Meal
         </PrimaryButton>
       </div>
@@ -116,7 +116,7 @@ const Tracker: React.FC = () => {
       {/* Add Meal Prompt */}
       {showNamePrompt && (
         <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center">
-          <div className="bg-white p-4 rounded-lg shadow-lg w-1/2">
+          <div className="bg-white p-4 rounded-lg shadow-lg w-[90%] md:w-1/2">
             <h2 className="text-xl font-bold mb-4 text-gray-800">
               Add New Meal
             </h2>

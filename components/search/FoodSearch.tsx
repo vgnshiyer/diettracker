@@ -80,6 +80,11 @@ const FoodSearch: React.FC = () => {
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              handleSearch();
+            }
+          }}
           placeholder="Search for a food item"
           className="pl-10 pr-20 py-3 w-full border border-black text-gray-800 rounded-lg text-lg"
         />

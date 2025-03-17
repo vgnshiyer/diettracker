@@ -32,7 +32,7 @@ const QuantityInput: React.FC<QuantityInputProps> = ({
 
   return (
     <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center">
-      <div className="bg-white rounded-lg shadow-lg w-[750px] flex overflow-hidden">
+      <div className="bg-white rounded-lg shadow-lg w-[90%] md:w-[750px] flex flex-col md:flex-row overflow-hidden">
         <div className="flex-1 p-6 ml-4 mt-4">
           <h1 className="text-2xl font-bold mb-4 text-black">{selectedItem.foodName}</h1>
           <Image
@@ -40,7 +40,7 @@ const QuantityInput: React.FC<QuantityInputProps> = ({
             alt={selectedItem.foodName}
             width={200}
             height={200}
-            className="rounded-lg"
+            className="rounded-lg w-1/2 md:w-full md:h-auto"
             loader={({ src, width, quality }) => {
               return `${src}?w=${width}&q=${quality || 75}`;
             }}
@@ -53,6 +53,7 @@ const QuantityInput: React.FC<QuantityInputProps> = ({
         </div>
 
         <div className="flex-1 bg-gray-50 flex flex-col p-6">
+          {/* left side */}
           <div className="mb-6">
             <label className="text-md font-semibold mb-2 block !text-black">Quantity (g)</label>
             <div className="flex items-center">
@@ -79,34 +80,35 @@ const QuantityInput: React.FC<QuantityInputProps> = ({
             </div>
           </div>
 
+          {/* right side */}
           <div className="grid grid-cols-2 gap-4 mb-6">
             <div className="bg-blue-50 p-4 rounded-lg text-center">
-              <p className="text-md text-blue-900 font-bold">Total Calories</p>
-              <p className="text-xl font-bold text-blue-700">
+              <p className="text-sm md:text-md text-blue-900 font-bold">Total Calories</p>
+              <p className="text-md md:text-xl font-bold text-blue-700">
                 {calculateNutrients(foodItem.nutrition.calories)} kcal
               </p>
             </div>
             <div className="bg-green-50 p-4 rounded-lg text-center">
-              <p className="text-md text-green-900 font-bold">Total Carbs</p>
-              <p className="text-xl font-bold text-green-700">
+              <p className="text-sm md:text-md text-green-900 font-bold">Total Carbs</p>
+              <p className="text-md md:text-xl font-bold text-green-700">
                 {calculateNutrients(foodItem.nutrition.carbs)}g
               </p>
             </div>
             <div className="bg-purple-50 p-4 rounded-lg text-center">
-              <p className="text-md text-purple-900 font-bold">Total Protein</p>
-              <p className="text-xl font-bold text-purple-700">
+              <p className="text-sm md:text-md text-purple-900 font-bold">Total Protein</p>
+              <p className="text-md md:text-xl font-bold text-purple-700">
                 {calculateNutrients(foodItem.nutrition.protein)}g
               </p>
             </div>
             <div className="bg-yellow-50 p-4 rounded-lg text-center">
-              <p className="text-md text-yellow-900 font-bold">Total Fats</p>
-              <p className="text-xl font-bold text-yellow-700">
+              <p className="text-sm md:text-md text-yellow-900 font-bold">Total Fats</p>
+              <p className="text-md md:text-xl font-bold text-yellow-700">
                 {calculateNutrients(foodItem.nutrition.fats)}g
               </p>
             </div>
           </div>
 
-          <div className="flex justify-end gap-4 mt-auto">
+          <div className="flex justify-end gap-2 mt-auto">
             <PrimaryButton
               className="!bg-red-500 hover:!bg-red-600"
               onClick={onClose}
