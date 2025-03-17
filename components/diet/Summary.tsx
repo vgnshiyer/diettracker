@@ -43,27 +43,27 @@ const Summary: React.FC<SummaryProps> = ({ meals }) => {
   };
 
   return (
-    <div className="p-8 rounded-lg border flex flex-col justify-between bg-primary h-full">
-      <h2 className="text-xl font-semibold mb-6">Summary</h2>
-      <div className="flex flex-row sm:flex-col justify-between gap-4">
+    <div className="p-4 md:p-8 rounded-lg border flex flex-col justify-between bg-primary h-full">
+      <h2 className="text-xl font-semibold mb-2 md:mb-6">Summary</h2>
+      <div className="flex flex-row sm:flex-col justify-between gap-2 md:gap-4">
         <div className="bg-blue-50 p-2 rounded-md text-center w-full">
-          <p className="font-semibold text-blue-900">Calories</p>
-          <p className="font-bold text-blue-700">{totals.calories} kcal</p>
+          <p className="font-semibold text-blue-900 text-xs md:text-sm">Calories</p>
+          <p className="font-bold text-blue-700 text-sm md:text-base">{totals.calories} kcal</p>
         </div>
         <div className="bg-green-50 p-2 rounded-md text-center w-full">
-          <p className="font-semibold text-green-900">Carbs</p>
-          <p className="font-bold text-green-700">{totals.carbs} g</p>
+          <p className="font-semibold text-green-900 text-xs md:text-sm">Carbs</p>
+          <p className="font-bold text-green-700 text-sm md:text-base">{totals.carbs} g</p>
         </div>
         <div className="bg-yellow-50 p-2 rounded-md text-center w-full">
-          <p className="font-semibold text-yellow-900">Fats</p>
-          <p className="font-bold text-yellow-700">{totals.fats} g</p>
+          <p className="font-semibold text-yellow-900 text-xs md:text-sm">Fats</p>
+          <p className="font-bold text-yellow-700 text-sm md:text-base">{totals.fats} g</p>
         </div>
         <div className="bg-purple-50 p-2 rounded-md text-center w-full">
-          <p className="font-semibold text-purple-900">Protein</p>
-          <p className="font-bold text-purple-700">{totals.protein} g</p>
+          <p className="font-semibold text-purple-900 text-xs md:text-sm">Protein</p>
+          <p className="font-bold text-purple-700 text-sm md:text-base">{totals.protein} g</p>
         </div>
       </div>
-      <SecondaryButton className="!mt-6" onClick={exportDiet} faIcon={faDownload}>
+      <SecondaryButton className="!mt-2 md:!mt-6" onClick={exportDiet} faIcon={faDownload}>
         Export Diet
       </SecondaryButton>
     </div>

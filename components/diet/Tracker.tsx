@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { useMealContext } from "@/context/MealContext";
@@ -72,7 +73,7 @@ const Tracker: React.FC = () => {
   };
 
   return (
-    <div className="p-4 rounded-lg max-w-7xl mx-auto mt-4">
+    <div className="p-4 rounded-lg max-w-7xl mx-auto">
 
       {/* Diet Actions */}
       <div className="flex items-center mb-4">

@@ -30,17 +30,17 @@ export const fetchSearchResults = async (query: string): Promise<SearchResult[] 
       },
     });
     const results: SearchResult[] = [
-      ...response.data.common.map((result: { food_name: string; photo: { thumb: string; }; }) => ({
-        foodName: result.food_name,
-        thumbnail: result.photo.thumb,
-      })),
       ...response.data.branded.map((result: { food_name: string; brand_name: string; nix_item_id: string; photo: { thumb: string; }; nf_calories: number; }) => ({
         foodName: result.food_name,
         brandName: result.brand_name,
         itemId: result.nix_item_id,
         thumbnail: result.photo.thumb,
         calories: result.nf_calories
-      }))
+      })),
+      ...response.data.common.map((result: { food_name: string; photo: { thumb: string; }; }) => ({
+        foodName: result.food_name,
+        thumbnail: result.photo.thumb,
+      })),
     ];
     return results;
   } catch (error) {

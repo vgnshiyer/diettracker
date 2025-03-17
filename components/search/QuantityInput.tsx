@@ -46,15 +46,14 @@ const QuantityInput: React.FC<QuantityInputProps> = ({
             }}
           />
           {'brandName' in selectedItem && selectedItem.brandName && (
-            <p className="text-sm text-black">
+            <p className="text-sm text-black mt-2 md:mt-0 font-bold">
               By {selectedItem.brandName}
             </p>
           )}
         </div>
 
         <div className="flex-1 bg-gray-50 flex flex-col p-6">
-          {/* left side */}
-          <div className="mb-6">
+          <div className="mb-2 md:mb-6">
             <label className="text-md font-semibold mb-2 block !text-black">Quantity (g)</label>
             <div className="flex items-center">
               <input
@@ -80,8 +79,7 @@ const QuantityInput: React.FC<QuantityInputProps> = ({
             </div>
           </div>
 
-          {/* right side */}
-          <div className="grid grid-cols-2 gap-4 mb-6">
+          <div className="grid grid-cols-2 gap-2 md:gap-4 mb-2 md:mb-6">
             <div className="bg-blue-50 p-4 rounded-lg text-center">
               <p className="text-sm md:text-md text-blue-900 font-bold">Total Calories</p>
               <p className="text-md md:text-xl font-bold text-blue-700">
@@ -91,19 +89,19 @@ const QuantityInput: React.FC<QuantityInputProps> = ({
             <div className="bg-green-50 p-4 rounded-lg text-center">
               <p className="text-sm md:text-md text-green-900 font-bold">Total Carbs</p>
               <p className="text-md md:text-xl font-bold text-green-700">
-                {calculateNutrients(foodItem.nutrition.carbs)}g
+                {calculateNutrients(foodItem.nutrition.carbs)} g
               </p>
             </div>
             <div className="bg-purple-50 p-4 rounded-lg text-center">
               <p className="text-sm md:text-md text-purple-900 font-bold">Total Protein</p>
               <p className="text-md md:text-xl font-bold text-purple-700">
-                {calculateNutrients(foodItem.nutrition.protein)}g
+                {calculateNutrients(foodItem.nutrition.protein)} g
               </p>
             </div>
             <div className="bg-yellow-50 p-4 rounded-lg text-center">
               <p className="text-sm md:text-md text-yellow-900 font-bold">Total Fats</p>
               <p className="text-md md:text-xl font-bold text-yellow-700">
-                {calculateNutrients(foodItem.nutrition.fats)}g
+                {calculateNutrients(foodItem.nutrition.fats)} g
               </p>
             </div>
           </div>

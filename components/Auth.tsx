@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { ApiCredentials } from '@/lib/diet/models';
 
-const ApiSetup = ({ onCredentialsSet }: { onCredentialsSet: () => void }) => {
+const Auth = ({ onCredentialsSet }: { onCredentialsSet: () => void }) => {
   const [credentials, setCredentials] = useState<ApiCredentials>({
     appId: '',
     appKey: '',
@@ -61,4 +61,4 @@ const ApiSetup = ({ onCredentialsSet }: { onCredentialsSet: () => void }) => {
   );
 };
 
-export default ApiSetup;
+export default Auth;
