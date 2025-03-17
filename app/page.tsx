@@ -1,7 +1,7 @@
-import DietSheet from "../components/diet/DietSheet";
+import Tracker from "../components/diet/Tracker";
 
 export default function Home() {
   return (
-    <DietSheet />
+    <Tracker />
   );
 }

@@ -1,16 +1,24 @@
 'use client';
 
-import "./globals.css";
+import ApiSetup from "@/components/ApiSetup";
+import Navbar from "@/components/Navbar";
 import { MealProvider } from "@/context/MealContext";
 import { getStoredCredentials } from "@/lib/diet/api";
-import { useState, useEffect} from 'react';
-import ApiSetup from "@/components/ApiSetup";
+import { Open_Sans } from "next/font/google";
+import { useEffect, useState } from 'react';
+import "./globals.css";
+
+const openSans = Open_Sans({
+  subsets: ['latin'],
+  weight: ['400', '700'],
+  variable: '--font-sans',
+});
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   const [hasCredentials, setHasCredentials] = useState(false);
 
   useEffect(() => {
@@ -24,10 +32,13 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body>
-        <MealProvider>
-          {children}
-        </MealProvider>
+      <body className={`${openSans.className} bg-white h-screen flex flex-col`}>
+        <main className="flex-1 overflow-y-auto">
+          <Navbar />
+          <MealProvider>
+            {children}
+          </MealProvider>
+        </main>
       </body>
     </html>
   );

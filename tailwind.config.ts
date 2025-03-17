@@ -6,11 +6,18 @@ const config: Config = {
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  fontFamily: {
+    sans: ['var(--font-sans)'],
+  },
   theme: {
     extend: {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        primary: "black",
+        secondary: "#2d2d2d",
+        contrast: "white",
+
       },
     },
   },

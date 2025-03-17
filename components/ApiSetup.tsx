@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import { ApiCredentials } from '@/lib/diet/models';
 
 const ApiSetup = ({ onCredentialsSet }: { onCredentialsSet: () => void }) => {
