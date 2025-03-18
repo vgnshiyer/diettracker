@@ -11,7 +11,7 @@ const Navbar = () => {
         <Link href="/">
           <div className="flex items-center gap-2">
             <Image 
-              src="/images/mainlogo.png" 
+              src="/assets/logo.jpg" 
               alt="Diet Planner Icon" 
               width={24}
               height={24}
