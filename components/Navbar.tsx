@@ -11,7 +11,7 @@ const Navbar = () => {
         <Link href="/">
           <div className="flex items-center gap-2">
             <Image 
-              src="/favicon.ico" 
+              src="/images/favicon.ico" 
               alt="Diet Planner Icon" 
               width={24}
               height={24}
@@ -21,7 +21,7 @@ const Navbar = () => {
           </div>
         </Link>
         <div className="flex items-center gap-4">
-          <Link href="https://github.com/vgnshiyer/simpledietplanner" target="_blank">
+          <Link href="https://github.com/vgnshiyer/simple-diet-planner" target="_blank">
             <FaGithub className="text-contrast text-2xl" />
           </Link>
         </div>
