@@ -5,6 +5,7 @@ const nextConfig = {
     images: {
         unoptimized: true,
     },
+    assetPrefix: process.env.NODE_ENV === 'production' ? '/simple-diet-planner/' : '',
 }
 
 export default nextConfig;
