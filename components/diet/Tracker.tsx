@@ -3,9 +3,13 @@
 
 import { useMealContext } from "@/context/MealContext";
 import { Meal as MealType } from "@/lib/diet/models";
-import { faFileImport, faPlus, faXmark } from "@fortawesome/free-solid-svg-icons";
+import {
+  faFileImport,
+  faPlus,
+  faXmark,
+} from "@fortawesome/free-solid-svg-icons";
 import { useRouter } from "next/navigation";
-import React, { useState, useRef } from "react";
+import React, { useRef, useState } from "react";
 import PrimaryButton from "../PrimaryButton";
 import Meal from "./Meal";
 import Summary from "./Summary";
@@ -74,6 +78,12 @@ const Tracker: React.FC = () => {
 
   return (
     <div className="p-4 rounded-lg max-w-7xl mx-auto">
+      <div className="text-sm text-gray-600 bg-gray-100 p-3 rounded-md mb-4">
+        <p>
+          Your diet is automatically saved in your browser&apos;s local
+          storage. You can export it anytime as a JSON file for backup.
+        </p>
+      </div>
 
       {/* Diet Actions */}
       <div className="flex items-center mb-4">
@@ -88,17 +98,23 @@ const Tracker: React.FC = () => {
           <PrimaryButton
             onClick={() => fileInputRef.current?.click()}
             faIcon={faFileImport}
+            className="!mt-0"
           >
             Import Diet
           </PrimaryButton>
         </div>
-        <PrimaryButton className="ml-2 md:ml-4" onClick={handleAddMeal} faIcon={faPlus}>
+        <PrimaryButton
+          className="ml-2 md:ml-4 !mt-0"
+          onClick={handleAddMeal}
+          faIcon={faPlus}
+        >
           Add Meal
         </PrimaryButton>
       </div>
 
       {/* Tracker */}
       <div className="flex flex-col sm:flex-row gap-4">
+        <Summary className="sm:hidden" meals={meals} />
         <div className="bg-gray-200 rounded-lg p-4 w-full sm:w-2/3">
           {meals.map((meal: MealType, index: number) => (
             <Meal
@@ -111,7 +127,7 @@ const Tracker: React.FC = () => {
             />
           ))}
         </div>
-          <Summary meals={meals} />
+        <Summary className="hidden sm:block" meals={meals} />
       </div>
 
       {/* Add Meal Prompt */}
@@ -137,10 +153,7 @@ const Tracker: React.FC = () => {
               >
                 Cancel
               </PrimaryButton>
-              <PrimaryButton
-                onClick={handleSaveMeal}
-                faIcon={faPlus}
-              >
+              <PrimaryButton onClick={handleSaveMeal} faIcon={faPlus}>
                 Add
               </PrimaryButton>
             </div>

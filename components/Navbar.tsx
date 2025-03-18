@@ -1,7 +1,7 @@
 'use client';
 
+import Image from 'next/image';
 import Link from "next/link";
-import React from "react";
 import { FaGithub } from "react-icons/fa";
 
 const Navbar = () => {
@@ -9,10 +9,19 @@ const Navbar = () => {
     <nav className="bg-primary p-4">
       <div className="container mx-auto flex justify-between items-center">
         <Link href="/">
-          <h1 className="text-contrast text-2xl font-bold">Diet Tracker</h1>
+          <div className="flex items-center gap-2">
+            <Image 
+              src="/favicon.ico" 
+              alt="Diet Planner Icon" 
+              width={24}
+              height={24}
+            className="object-contain"
+          />
+            <span className="text-contrast text-2xl font-bold">Simple Diet Planner</span>
+          </div>
         </Link>
         <div className="flex items-center gap-4">
-          <Link href="https://github.com/vgnshiyer" target="_blank">
+          <Link href="https://github.com/vgnshiyer/simpledietplanner" target="_blank">
             <FaGithub className="text-contrast text-2xl" />
           </Link>
         </div>

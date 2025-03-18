@@ -5,9 +5,10 @@ import SecondaryButton from "../SecondaryButton";
 
 interface SummaryProps {
   meals: Meal[];
+  className?: string;
 }
 
-const Summary: React.FC<SummaryProps> = ({ meals }) => {
+const Summary: React.FC<SummaryProps> = ({ meals, className }) => {
   const calculateTotals = () => {
     return meals.reduce(
       (totals, meal) => {
@@ -43,7 +44,7 @@ const Summary: React.FC<SummaryProps> = ({ meals }) => {
   };
 
   return (
-    <div className="p-4 md:p-8 rounded-lg border flex flex-col justify-between bg-primary h-full">
+    <div className={`p-4 md:p-8 rounded-lg border flex flex-col justify-between bg-primary h-full ${className}`}>
       <h2 className="text-xl font-semibold mb-2 md:mb-6">Summary</h2>
       <div className="flex flex-row sm:flex-col justify-between gap-2 md:gap-4">
         <div className="bg-blue-50 p-2 rounded-md text-center w-full">
