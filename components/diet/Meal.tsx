@@ -3,6 +3,7 @@ import { faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import Action from '../Action';
+import { roundValue } from './helpers';
 
 interface MealProps {
   meal: MealType;
@@ -57,11 +58,11 @@ const Meal: React.FC<MealProps> = ({
             return (
               <tr key={idx} className="hover:bg-gray-50">
                 <td className={style}>{item.name}</td>
-                <td className={style}>{item.quantity}</td>
-                <td className={style}>{item.nutrition.calories} kcal</td>
-                <td className={style}>{item.nutrition.carbs} g</td>
-                <td className={style}>{item.nutrition.fats} g</td>
-                <td className={style}>{item.nutrition.protein} g</td>
+                <td className={style}>{item.quantity} g</td>
+                <td className={style}>{roundValue(item.nutrition.calories)} kcal</td>
+                <td className={style}>{roundValue(item.nutrition.carbs)} g</td>
+                <td className={style}>{roundValue(item.nutrition.fats)} g</td>
+                <td className={style}>{roundValue(item.nutrition.protein)} g</td>
                 <td className={style}>
                   <Action 
                     className="!mt-0 !text-red-500 !font-semibold !text-sm" 

@@ -2,6 +2,7 @@ import { Meal } from "@/lib/diet/models";
 import { faDownload } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
 import SecondaryButton from "../SecondaryButton";
+import { roundValue } from "./helpers";
 
 interface SummaryProps {
   meals: Meal[];
@@ -13,16 +14,10 @@ const Summary: React.FC<SummaryProps> = ({ meals, className }) => {
     return meals.reduce(
       (totals, meal) => {
         meal.foodItems.forEach((item) => {
-          totals.calories = Number(
-            (totals.calories + item.nutrition.calories).toFixed(2)
-          );
-          totals.carbs = Number(
-            (totals.carbs + item.nutrition.carbs).toFixed(2)
-          );
-          totals.fats = Number((totals.fats + item.nutrition.fats).toFixed(2));
-          totals.protein = Number(
-            (totals.protein + item.nutrition.protein).toFixed(2)
-          );
+          totals.calories = totals.calories + item.nutrition.calories;
+          totals.carbs = totals.carbs + item.nutrition.carbs;
+          totals.fats = totals.fats + item.nutrition.fats;
+          totals.protein = totals.protein + item.nutrition.protein;
         });
         return totals;
       },
@@ -49,19 +44,19 @@ const Summary: React.FC<SummaryProps> = ({ meals, className }) => {
       <div className="flex flex-row sm:flex-col justify-between gap-2 md:gap-4">
         <div className="bg-blue-50 p-2 rounded-md text-center w-full">
           <p className="font-semibold text-blue-900 text-xs md:text-sm">Calories</p>
-          <p className="font-bold text-blue-700 text-sm md:text-base">{totals.calories} kcal</p>
+          <p className="font-bold text-blue-700 text-sm md:text-base">{roundValue(totals.calories)} kcal</p>
         </div>
         <div className="bg-green-50 p-2 rounded-md text-center w-full">
           <p className="font-semibold text-green-900 text-xs md:text-sm">Carbs</p>
-          <p className="font-bold text-green-700 text-sm md:text-base">{totals.carbs} g</p>
+          <p className="font-bold text-green-700 text-sm md:text-base">{roundValue(totals.carbs)} g</p>
         </div>
         <div className="bg-yellow-50 p-2 rounded-md text-center w-full">
           <p className="font-semibold text-yellow-900 text-xs md:text-sm">Fats</p>
-          <p className="font-bold text-yellow-700 text-sm md:text-base">{totals.fats} g</p>
+          <p className="font-bold text-yellow-700 text-sm md:text-base">{roundValue(totals.fats)} g</p>
         </div>
         <div className="bg-purple-50 p-2 rounded-md text-center w-full">
           <p className="font-semibold text-purple-900 text-xs md:text-sm">Protein</p>
-          <p className="font-bold text-purple-700 text-sm md:text-base">{totals.protein} g</p>
+          <p className="font-bold text-purple-700 text-sm md:text-base">{roundValue(totals.protein)} g</p>
         </div>
       </div>
       <SecondaryButton className="!mt-2 md:!mt-6" onClick={exportDiet} faIcon={faDownload}>

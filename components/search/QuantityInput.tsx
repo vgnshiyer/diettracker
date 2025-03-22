@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import React from "react";
 import PrimaryButton from "../PrimaryButton";
+import { roundNutrient } from "./helpers";
 
 interface QuantityInputProps {
   selectedItem: SearchResult;
@@ -26,10 +27,6 @@ const QuantityInput: React.FC<QuantityInputProps> = ({
   onQuantityIncrement,
   onQuantityDecrement,
 }) => {
-  const calculateNutrients = (base: number) => {
-    return Number((base * quantity).toFixed(2));
-  };
-
   return (
     <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center">
       <div className="bg-white rounded-lg shadow-lg w-[90%] md:w-[750px] flex flex-col md:flex-row overflow-hidden">
@@ -83,25 +80,25 @@ const QuantityInput: React.FC<QuantityInputProps> = ({
             <div className="bg-blue-50 p-4 rounded-lg text-center">
               <p className="text-sm md:text-md text-blue-900 font-bold">Total Calories</p>
               <p className="text-md md:text-xl font-bold text-blue-700">
-                {calculateNutrients(foodItem.nutrition.calories)} kcal
+                {roundNutrient(foodItem.nutrition.calories, quantity)} kcal
               </p>
             </div>
             <div className="bg-green-50 p-4 rounded-lg text-center">
               <p className="text-sm md:text-md text-green-900 font-bold">Total Carbs</p>
               <p className="text-md md:text-xl font-bold text-green-700">
-                {calculateNutrients(foodItem.nutrition.carbs)} g
+                {roundNutrient(foodItem.nutrition.carbs, quantity)} g
               </p>
             </div>
             <div className="bg-purple-50 p-4 rounded-lg text-center">
               <p className="text-sm md:text-md text-purple-900 font-bold">Total Protein</p>
               <p className="text-md md:text-xl font-bold text-purple-700">
-                {calculateNutrients(foodItem.nutrition.protein)} g
+                {roundNutrient(foodItem.nutrition.protein, quantity)} g
               </p>
             </div>
             <div className="bg-yellow-50 p-4 rounded-lg text-center">
               <p className="text-sm md:text-md text-yellow-900 font-bold">Total Fats</p>
               <p className="text-md md:text-xl font-bold text-yellow-700">
-                {calculateNutrients(foodItem.nutrition.fats)} g
+                {roundNutrient(foodItem.nutrition.fats, quantity)} g
               </p>
             </div>
           </div>

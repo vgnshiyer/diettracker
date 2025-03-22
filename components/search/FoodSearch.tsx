@@ -27,6 +27,7 @@ const FoodSearch: React.FC = () => {
     if (selectedMealIndex === null) {
       router.push("/");
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleSearch = async () => {
@@ -59,10 +60,10 @@ const FoodSearch: React.FC = () => {
         ...foodItem,
         quantity,
         nutrition: {
-          calories: Number((foodItem.nutrition.calories * quantity).toFixed(1)),
-          carbs: Number((foodItem.nutrition.carbs * quantity).toFixed(1)),
-          fats: Number((foodItem.nutrition.fats * quantity).toFixed(1)),
-          protein: Number((foodItem.nutrition.protein * quantity).toFixed(1)),
+          calories: foodItem.nutrition.calories * quantity,
+          carbs: foodItem.nutrition.carbs * quantity,
+          fats: foodItem.nutrition.fats * quantity,
+          protein: foodItem.nutrition.protein * quantity,
         },
       };
       addFoodItemToMeal(roundedFoodItem);

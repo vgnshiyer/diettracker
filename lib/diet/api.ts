@@ -46,12 +46,14 @@ export const fetchSearchResults = async (
           itemId: result.nix_item_id,
           thumbnail: result.photo.thumb,
           calories: result.nf_calories,
+          type: "branded",
         })
       ),
       ...response.data.common.map(
         (result: { food_name: string; photo: { thumb: string } }) => ({
           foodName: result.food_name,
           thumbnail: result.photo.thumb,
+          type: "common",
         })
       ),
     ];
