@@ -1,36 +1,65 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Simple Diet Planner
 
-## Getting Started
+A simple way to plan and track your diet on your web browser.
 
-First, run the development server:
+<img src="./public/logo.jpg" alt="Simple Diet Planner Screenshot" width="200">
+
+[![](https://badgen.net/github/license/vgnshiyer/simple-diet-planner)](https://github.com/vgnshiyer/simple-diet-planner/blob/master/LICENSE)
+[![](https://img.shields.io/badge/Follow-vgnshiyer-0A66C2?logo=linkedin)](https://www.linkedin.com/comm/mynetwork/discovery-see-all?usecase=PEOPLE_FOLLOWS&followMember=vgnshiyer)
+[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-Donate-yellow.svg?logo=buymeacoffee)](https://www.buymeacoffee.com/vgnshiyer)
+
+
+## Features
+
+- **Track meals:** Tweak your macros and foods according to your goals.
+- **Search for foods:** Easily search for foods and add them to your plan with a database of over 1 million foods from the Nutritionix API.
+- **Summarize your daily intake:** See a detailed summary of your macros and calories.
+- **User friendly interface:** Add meals and ingredients with a click of a button.
+
+## Getting started
+
+1. Get a free API key from [Nutritionix](https://developer.nutritionix.com/signup) and enter it in the App setup. (You only have to do this once.)
+2. Add your meals to your plan. It will automatically save it to your browser's local storage.
+3. Search for foods (E.g. "Great Value Oats") and add them to a meal.
+4. A summary of your daily intake will be displayed on the right side of the screen.
+5. Tweak your macros and foods according to your goals.
+
+## Development
+
+### Local Setup
+
+```bash
+npm install
+```
+
+### Running the application
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Building the application
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run build
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Learn More
+## Contributing
 
-To learn more about Next.js, take a look at the following resources:
+Thank you for your interest in contributing to this project!
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+To contribute, please fork the repository and create a pull request.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Opening Issues
+If you encounter a bug, have a feature request, or want to discuss something related to the project, please open an issue on the GitHub repository. When opening an issue, please provide:
 
-## Deploy on Vercel
+**Bug Reports**: Describe the issue in detail. Include steps to reproduce the bug if possible, along with any error messages or screenshots.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+**Feature Requests**: Clearly explain the new feature you'd like to see added to the project. Provide context on why this feature would be beneficial.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+**General Discussions**: Feel free to start discussions on broader topics related to the project.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](https://github.com/vgnshiyer/simple-diet-planner/blob/master/LICENSE) file for details.
