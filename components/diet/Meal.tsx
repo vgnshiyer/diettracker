@@ -20,6 +20,18 @@ const Meal: React.FC<MealProps> = ({
   onRemoveFoodItem,
   onAddItem,
 }) => {
+  const totals = meal.foodItems.reduce((acc, item) => {
+    return {
+      calories: acc.calories + item.nutrition.calories,
+      carbs: acc.carbs + item.nutrition.carbs,
+      fats: acc.fats + item.nutrition.fats,
+      protein: acc.protein + item.nutrition.protein,
+    };
+  }, { calories: 0, carbs: 0, fats: 0, protein: 0 });
+
+  const headerStyle = "py-2 px-4 text-left text-sm font-semibold text-black";
+  const cellStyle = "py-2 px-4 border-b border-gray-200 text-gray-800 text-sm";
+
   return (
     <div className="mb-6">
       <div className="flex justify-between items-center mb-2">
@@ -48,22 +60,21 @@ const Meal: React.FC<MealProps> = ({
               'Protein (g)',
               ''
             ].map((label, index) => (
-              <th key={index} className="py-2 px-4 text-left text-sm font-bold text-gray-500">{label}</th>
+              <th key={index} className={headerStyle}>{label}</th>
             ))
           }
         </thead>
         <tbody>
           {meal.foodItems.map((item: FoodItem, idx: number) => {
-            const style = "py-2 px-4 border-b border-gray-200 text-gray-800 font-semibold text-sm";
             return (
               <tr key={idx} className="hover:bg-gray-50">
-                <td className={style}>{item.name}</td>
-                <td className={style}>{item.quantity} g</td>
-                <td className={style}>{roundValue(item.nutrition.calories)} kcal</td>
-                <td className={style}>{roundValue(item.nutrition.carbs)} g</td>
-                <td className={style}>{roundValue(item.nutrition.fats)} g</td>
-                <td className={style}>{roundValue(item.nutrition.protein)} g</td>
-                <td className={style}>
+                <td className={cellStyle}>{item.name}</td>
+                <td className={cellStyle}>{item.quantity} g</td>
+                <td className={cellStyle}>{roundValue(item.nutrition.calories)} kcal</td>
+                <td className={cellStyle}>{roundValue(item.nutrition.carbs)} g</td>
+                <td className={cellStyle}>{roundValue(item.nutrition.fats)} g</td>
+                <td className={cellStyle}>{roundValue(item.nutrition.protein)} g</td>
+                <td className={cellStyle}>
                   <Action 
                     className="!mt-0 !text-red-500 !font-semibold !text-sm" 
                     onClick={() => onRemoveFoodItem(index, idx, item.name)} 
@@ -74,6 +85,15 @@ const Meal: React.FC<MealProps> = ({
               </tr>
             );
           })}
+          <tr>
+            <td className={headerStyle}>Total</td>
+            <td className={headerStyle}></td>
+            <td className={headerStyle}>{roundValue(totals.calories)} kcal</td>
+            <td className={headerStyle}>{roundValue(totals.carbs)} g</td>
+            <td className={headerStyle}>{roundValue(totals.fats)} g</td>
+            <td className={headerStyle}>{roundValue(totals.protein)} g</td>
+            <td className={headerStyle}></td>
+          </tr>
           </tbody>
         </table>
       </div>
