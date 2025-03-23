@@ -116,16 +116,22 @@ const Tracker: React.FC = () => {
       <div className="flex flex-col sm:flex-row gap-4">
         <Summary className="sm:hidden" meals={meals} />
         <div className="bg-gray-200 rounded-lg p-4 w-full sm:w-2/3">
-          {meals.map((meal: MealType, index: number) => (
-            <Meal
-              key={index}
-              meal={meal}
-              index={index}
-              onRemoveMeal={handleRemoveMeal}
-              onRemoveFoodItem={removeFoodItem}
-              onAddItem={openSearchPage}
-            />
-          ))}
+          {meals && meals.length > 0 ? (
+            meals.map((meal: MealType, index: number) => (
+              <Meal
+                key={index}
+                meal={meal}
+                index={index}
+                onRemoveMeal={handleRemoveMeal}
+                onRemoveFoodItem={removeFoodItem}
+                onAddItem={openSearchPage}
+              />
+            ))
+          ) : (
+            <div className="mt-10 text-center text-gray-500">
+              No meals added yet.
+            </div>
+          )}
         </div>
         <Summary className="hidden sm:block" meals={meals} />
       </div>

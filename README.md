@@ -19,9 +19,21 @@ A simple way to plan and track your diet on your web browser.
 ## Getting started
 
 1. Get a free API key from [Nutritionix](https://developer.nutritionix.com/signup) and enter it in the App setup. (You only have to do this once.)
+
+<img src="./public/screenshots/api_auth.png" alt="API Auth" width="300">
+
 2. Add your meals to your plan. It will automatically save it to your browser's local storage.
-3. Search for foods (E.g. "Great Value Oats") and add them to a meal.
+
+<img src="./public/screenshots/add_meal.png" alt="Add Meal" width="600">
+
+3. Search for foods, select the quantity and add them to a meal.
+
+<img src="./public/screenshots/search_food.png" alt="Search Food" width="600">
+
 4. A summary of your daily intake will be displayed on the right side of the screen.
+
+<img src="./public/screenshots/summary.png" alt="Summary" width="600">
+
 5. Tweak your macros and foods according to your goals.
 
 ## Development
