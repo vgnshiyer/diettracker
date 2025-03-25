@@ -27,6 +27,11 @@ const Summary: React.FC<SummaryProps> = ({ meals, className }) => {
 
   const totals = calculateTotals();
 
+  const getMacroPercentage = (macroCalories: number) => {
+    if (totals.calories === 0) return "0.00";
+    return ((macroCalories / totals.calories) * 100).toFixed(2);
+  };  
+
   const exportDiet = () => {
     const dataStr = JSON.stringify(meals, null, 2);
     const blob = new Blob([dataStr], { type: "application/json" });
@@ -49,14 +54,17 @@ const Summary: React.FC<SummaryProps> = ({ meals, className }) => {
         <div className="bg-green-50 p-2 rounded-md text-center w-full">
           <p className="font-semibold text-green-900 text-xs md:text-sm">Carbs</p>
           <p className="font-bold text-green-700 text-sm md:text-base">{roundValue(totals.carbs)} g</p>
+          <p className="text-green-700 text-xs md:text-sm">{getMacroPercentage(totals.carbs * 4)}%</p>
         </div>
         <div className="bg-yellow-50 p-2 rounded-md text-center w-full">
           <p className="font-semibold text-yellow-900 text-xs md:text-sm">Fats</p>
           <p className="font-bold text-yellow-700 text-sm md:text-base">{roundValue(totals.fats)} g</p>
+          <p className="text-yellow-700 text-xs md:text-sm">{getMacroPercentage(totals.fats * 9)}%</p>
         </div>
         <div className="bg-purple-50 p-2 rounded-md text-center w-full">
           <p className="font-semibold text-purple-900 text-xs md:text-sm">Protein</p>
           <p className="font-bold text-purple-700 text-sm md:text-base">{roundValue(totals.protein)} g</p>
+          <p className="text-purple-700 text-xs md:text-sm">{getMacroPercentage(totals.protein * 4)}%</p>
         </div>
       </div>
       <SecondaryButton className="!mt-2 md:!mt-6" onClick={exportDiet} faIcon={faDownload}>
